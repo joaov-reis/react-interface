@@ -43,11 +43,7 @@ function App() {
 
 export default App;
 
-const Welcome = ({
-  bgColor
-}: {
-  bgColor?: string
-}) => {
+const Welcome = ({ bgColor }: { bgColor?: string }) => {
   const mensagem = "Olá, mundo!";
   const horaAtual = new Date().toLocaleTimeString();
   return (
