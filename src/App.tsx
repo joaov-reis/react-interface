@@ -3,16 +3,21 @@ import "./App.css";
 import Examples from "./components/example-flexbox";
 import Avatar from "./components/avatar";
 import { useEffect, useState } from "react";
+import Form from "./components/form-create-user";
 
 type Count = number;
-type Name = string;
-type Show = boolean;
 
 function App() {
+  return <>
+    <Form/>
+  </>
+}
+
+function App__() {
   const [count, setCount] = useState<Count>(0);
-  const [name, setName] = useState<Name>("");
-  const [show, setShow] = useState<Show>(false);
-  const [scrollY, setScrollY] = useState<Number>(0);
+  const [name, setName] = useState<string>("");
+  const [show, setShow] = useState<boolean>(false);
+  const [scrollY, setScrollY] = useState<number>(0);
 
   // console.log("Componente executado");
 
@@ -42,7 +47,7 @@ function App() {
       <ShowCount value={scrollY} />
       <Button text="Clique aqui" onClick={() => setCount(count! + 1)} />
       <Input
-        onChange={(e) => {
+        onChange={(e: any) => {
           setName(e.target.value);
         }}
         value={name}
@@ -68,15 +73,15 @@ function Button({ onClick, text }: ButtonProps) {
   return (
     <button
       onClick={onClick}
-      // onDoubleClick={() => {
-      //   console.log("Duplo clique!");
-      // }}
-      // onMouseEnter={() => {
-      //   console.log("Mouse em cima do botao!");
-      // }}
-      // onMouseLeave={() => {
-      //   console.log("Mouse saiu do botao!");
-      // }}
+      onDoubleClick={() => {
+        console.log("Duplo clique!");
+      }}
+    // onMouseEnter={() => {
+    //   console.log("Mouse em cima do botao!");
+    // }}
+    // onMouseLeave={() => {
+    //   console.log("Mouse saiu do botao!");
+    // }}
     >
       {text}
     </button>
@@ -92,20 +97,20 @@ function Input({ onChange, value }: { onChange: any; value: string }) {
       onChange={onChange}
       value={value}
       onKeyDown={({ key }) => {
-        // console.log(key)
-        // if(key === "Enter"){
-        //   alert("Fomulário enviado")
-        // }
+        console.log(key)
+        if (key === "Enter") {
+          alert("Fomulário enviado")
+        }
       }}
-      // onKeyUp={(event) => {
-      //   console.log(event.key);
-      // }}
-      // onBlur={(event) => {
-      //   console.log(event, "Desfocado");
-      // }}
-      // onFocus={(event) => {
-      //   console.log(event, "Elemento focado");
-      // }}
+    // onKeyUp={(event) => {
+    //   console.log(event.key);
+    // }}
+    // onBlur={(event) => {
+    //   console.log(event, "Desfocado");
+    // }}
+    // onFocus={(event) => {
+    //   console.log(event, "Elemento focado");
+    // }}
     />
   );
 }
