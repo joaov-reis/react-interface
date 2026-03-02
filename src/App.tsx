@@ -104,13 +104,10 @@ const Child = ({ name }: { name: string }) => {
 
   const [localCount, setLocalCount] = useState<number[]>([]);
 
-  const pares = useMemo(() => {
-    const pares = localCount.filter((count) => {
-      console.log("Filtrando valor:", count);
-      return count % 2 === 0;
-    });
-    return pares;
-  }, [localCount]);
+  const pares = useMemo(
+    () => localCount.filter((count) => count % 2 === 0),
+    [localCount],
+  );
 
   return (
     <div
