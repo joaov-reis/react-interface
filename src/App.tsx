@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -19,8 +19,18 @@ function App() {
     [searchText, tasks],
   );
 
+  const handleAnything = useCallback(() => {
+    console.log(tasks);
+  }, [tasks]);
+
   return (
     <>
+      <button
+        onClick={() => setTasks([...tasks, `Tarefa ${tasks.length + 1}`])}
+      >
+        Adicionar tarefa
+      </button>
+      <button onClick={handleAnything}>Executar função</button>
       <div>
         <input
           type="text"
