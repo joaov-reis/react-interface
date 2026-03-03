@@ -12,4 +12,5 @@ export const StyledBrand = styled(NavbarBrand)`
 
 export const Main = styled.main`
   min-height: 80vh;
+  padding-top: 20px;
 `;
