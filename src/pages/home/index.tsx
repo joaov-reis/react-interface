@@ -1,8 +1,9 @@
 import { Container } from "reactstrap";
-import { ContainerSearch, InputSearch } from "./styles";
-import { Row, Col } from "reactstrap";
 import { useEvents } from "../../hooks/useEvents";
 import { useMemo, useState } from "react";
+import SearchBar from "./components/search-bar";
+import Title from "./components/title";
+import EventList from "./components/event-list";
 
 function Home() {
   const { events } = useEvents();
@@ -20,33 +21,9 @@ function Home() {
 
   return (
     <Container>
-      <ContainerSearch>
-        <InputSearch
-          type="text"
-          placeholder="Buscar eventos por título ou descrição..."
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </ContainerSearch>
-      <h2>
-        {searchText.length > 0
-          ? `Busca realizada: ${searchText}`
-          : "Todos os eventos"}
-      </h2>
-
-      <Row>
-        {filteredEvents.length === 0 ? (
-          <Col>
-            <p className="text-muted">Nenhum evento encontrado</p>
-          </Col>
-        ) : (
-          filteredEvents.map((event) => (
-            <Col key={event.id} sm="12" md="6" lg="4" className="mb-4">
-              {event.title}
-            </Col>
-          ))
-        )}
-      </Row>
+      <SearchBar value={searchText} onChange={setSearchText} />
+      <Title searchValue={searchText} />
+      <EventList events={filteredEvents} searchTerm={searchText}/>
     </Container>
   );
 }
