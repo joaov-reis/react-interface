@@ -1,0 +1,12 @@
+[
+  { "id": "1", "name": "Show Musical" },
+  { "id": "2", "name": "Conferência de Tecnologia" },
+  { "id": "3", "name": "Workshop de Fotografia" },
+  { "id": "4", "name": "Festival Gastronômico" },
+  { "id": "5", "name": "Feira de Negócios" },
+  { "id": "6", "name": "Evento Esportivo" },
+  { "id": "7", "name": "Palestra Motivacional" },
+  { "id": "8", "name": "Exposição de Arte" },
+  { "id": "9", "name": "Encontro de Startups" },
+  { "id": "10", "name": "Seminário Acadêmico" }
+]

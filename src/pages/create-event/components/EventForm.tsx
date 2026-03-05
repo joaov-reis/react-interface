@@ -1,48 +1,122 @@
+import styled from "styled-components";
+import type { Category } from "../../../types/event";
+import type { ChangeEvent, FormEvent } from "react";
+import {
+  Button,
+  Form,
+  FormFeedback,
+  FormGroup,
+  Input,
+  Label,
+} from "reactstrap";
+
+interface Form {
+  title: string;
+  description: string;
+  date: string;
+  imageUrl: string;
+  category: string;
+}
+
+interface EventFormProps {
+  formData: Form;
+  categories: Category[];
+  errors: Record<string, string>;
+  onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  onSubmit: (e: FormEvent) => void;
+}
+
 function EventForm({
-  events,
-  searchTerm,
-}: {
-  events: Event[];
-  searchTerm: string;
-}) {
-  const navigate = useNavigate();
-
-  if (events.length === 0) {
-    return (
-      <p className="text-muted">
-        {searchTerm
-          ? `Nehum resultado encontrado para "${searchTerm}"`
-          : "Nehum evento registrado ainda."}
-      </p>
-    );
-  }
-
-  const handleGoDetails = useCallback((id:string)=>{
-    navigate(`details-event/${id}`)
-  }, [navigate])
-
+  formData,
+  categories,
+  errors,
+  onChange,
+  onSubmit,
+}: EventFormProps) {
   return (
-    <Row>
-      {events.map((event) => (
-        <Col key={event.id} sm="12" md="6" lg="4" className="mb-4">
-          <CardCustom
-            description={event.description}
-            subtitle={`${formatDate(event.date)} • ${event.category}`}
-            title={event.title}
-            imageUrl={event.imageUrl}
-            primaryAction={{
-              text: "Ver detalhes",
-              onClick: () => handleGoDetails(event.id),
-            }}
-            secondaryAction={{
-              text: "Inscreva-se",
-              onClick: () => {},
-            }}
+    <FormContainer>
+      <h3>Criar evento</h3>
+      <Form onSubmit={onSubmit} className="mt-4">
+        
+        <FormGroup> <Label htmlFor="title">Titulo</Label>
+          <Input
+            name="title"
+            value={formData.title}
+            onChange={onChange}
+            invalid={!!errors.title}
           />
-        </Col>
-      ))}
-    </Row>
+          <FormFeedback>{errors.title}</FormFeedback>
+        </FormGroup>
+
+        <FormGroup> <Label htmlFor="category">Categoria</Label>
+          <Input
+            type="select"
+            name="category"
+            value={formData.category}
+            onChange={onChange}
+            invalid={!!errors.category}
+          >
+            <option value="">Selecionar categoria</option>
+            {categories.map((categoria) => (
+              <option key={categoria.id} value={categoria.id}>
+                {categoria.name}
+              </option>
+            ))}
+          </Input>
+          <FormFeedback>{errors.category}</FormFeedback>
+        </FormGroup>
+
+        <FormGroup> <Label htmlFor="date">Data</Label>
+          <Input
+            type="date-local"
+            name="date"
+            value={formData.date}
+            onChange={onChange}
+            invalid={!!errors.date}
+          />
+          <FormFeedback>{errors.date}</FormFeedback>
+        </FormGroup>
+
+        <FormGroup> <Label htmlFor="imageUrl">Imagem URL</Label>
+          <Input
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={onChange}
+            placeholder="https://..."
+          />
+        </FormGroup>
+
+        <FormGroup> <Label htmlFor="description">Descrição</Label>
+          <Input
+            type="textarea"
+            name="description"
+            rows="4"
+            value={formData.description}
+            onChange={onChange}
+            invalid={!!errors.description}
+          />
+          <FormFeedback>{errors.description}</FormFeedback>
+        </FormGroup>
+
+        <Button type="submit" color="primary" block>
+          Salvar Evento
+        </Button>
+
+        {/* <Button type="reset" color="secondary" block>
+          Limpar
+        </Button> */}
+      </Form>
+    </FormContainer>
   );
 }
 
-export default EventList;
+export default EventForm;
+
+const FormContainer = styled.div`
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  /* background-color: ${({ theme }) => theme.cardBg};
+  border: 1px solid ${({ theme }) => theme.border}; */
+  border-radius: 8px;
+`;
