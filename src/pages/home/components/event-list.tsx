@@ -37,7 +37,7 @@ function EventList({
         <Col key={event.id} sm="12" md="6" lg="4" className="mb-4">
           <CardCustom
             description={event.description}
-            subtitle={`${formatDate(event.date)} • ${event.category}`}
+            subtitle={`${formatDate(event.date)} • ${event.category.name}`}
             title={event.title}
             imageUrl={event.imageUrl || undefined}
             primaryAction={{
