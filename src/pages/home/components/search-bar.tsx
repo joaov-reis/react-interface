@@ -12,7 +12,7 @@ function SearchBar({ onChange, value }: SearchBarProps) {
         type="text"
         placeholder="Buscar reuniões por título ou descrição..."
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e: { target: { value: string; }; }) => onChange(e.target.value)}
       />
     </ContainerSearch>
   );
