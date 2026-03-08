@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 export const CardContainer = styled(Card)`
   height: 100%;
+  background-color: ${({ theme }) => theme.cardBg};
+  border: 1px solid ${({ theme }) => theme.border};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ImageContainer = styled.div`

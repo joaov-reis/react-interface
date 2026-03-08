@@ -2,10 +2,12 @@ import { Button, Container } from "reactstrap";
 import { StyledBrand, StyledNavbar } from "./styles";
 import logo from "../../assets/logo.png";
 import { Link, useLocation } from "react-router";
-import { BsSun } from "react-icons/bs";
+import { BsMoonStars, BsSun } from "react-icons/bs";
+import { useTheme } from "../../context/ThemeConxtext";
 
 function Header() {
   const location = useLocation();
+  const { toggleTheme, isDark } = useTheme();
   return (
     <StyledNavbar>
       <Container className="d-flex justify-content-between">
@@ -26,8 +28,14 @@ function Header() {
               Criar evento
             </Button>
           )}
-          <Button outline size="sm" className="">
-            <BsSun size={18} />
+          <Button
+            outline
+            size="sm"
+            className="d-flex align-items-center justify-content-center"
+            color={isDark ? "light" : "dark"}
+            onClick={toggleTheme}
+          >
+            {isDark ? <BsSun size={18} /> : <BsMoonStars size={18} />}
           </Button>
         </div>
       </Container>

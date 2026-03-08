@@ -1,24 +1,25 @@
+/* eslint-disable react-hooks/preserve-manual-memoization */
 import { Container } from "reactstrap";
 import EventForm from "./components/EventForm";
-import type { Event } from "../../types/event";
+import type { EventFormData, FormErros } from "../../types";
 import { useCallback, useState } from "react";
 import { validateEventForm } from "../../utils/validateEventForm";
 import { useNavigate } from "react-router";
-import { useCategories } from "../../hooks/useCategories";
+import { useEvents } from "../../hooks/useEvents";
 
-type FormDataCustom = Omit<Event, "id">;
+const INITIAL_FORM = {
+  title: "",
+  description: "",
+  date: "",
+  imageUrl: "",
+  categoryId: "",
+};
 
 function CreateEvent() {
   const navigate = useNavigate();
-  const { categories, isLoading } = useCategories();
-  const [formData, setFormData] = useState<FormDataCustom>({
-    title: "",
-    description: "",
-    date: "",
-    imageUrl: "",
-    category: "",
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const { categories, isLoadingCategories, saveEvent } = useEvents();
+  const [formData, setFormData] = useState<EventFormData>(INITIAL_FORM);
+  const [errors, setErrors] = useState<FormErros>({});
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -26,7 +27,8 @@ function CreateEvent() {
 
       setFormData((prev) => ({ ...prev, [name]: value }));
 
-      if (errors[name]) {
+      const key = name as keyof FormErros;
+      if (errors[key]) {
         setErrors((prev) => ({ ...prev, [name]: "" }));
       }
     },
@@ -39,13 +41,13 @@ function CreateEvent() {
       const validation = validateEventForm(formData);
 
       if (validation.isValid) {
-        // saveEvent({ id: uuidv4(), ...formData });
+        saveEvent(formData);
         navigate("/");
       } else {
         setErrors(validation.errors);
       }
     },
-    [formData, navigate], //saveEvent,
+    [formData, navigate, saveEvent, setErrors],
   );
   return (
     <Container>
@@ -55,6 +57,8 @@ function CreateEvent() {
         errors={errors}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        isLoadingCategories={isLoadingCategories}
+        resetForm={() => setFormData(INITIAL_FORM)}
       />
     </Container>
   );

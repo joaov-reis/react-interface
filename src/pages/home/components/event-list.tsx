@@ -1,6 +1,6 @@
 import { Col, Row } from "reactstrap";
 import CardCustom from "../../../components/CardCustom";
-import type { Event } from "../../../types/event";
+import type { EventWithId } from "../../../types";
 import { useNavigate } from "react-router";
 import { useCallback } from "react";
 import { formatDate } from "../../../utils/format-date";
@@ -9,10 +9,17 @@ function EventList({
   events,
   searchTerm,
 }: {
-  events: Event[];
+  events: EventWithId[];
   searchTerm: string;
 }) {
   const navigate = useNavigate();
+
+  const handleGoDetails = useCallback(
+    (id: string) => {
+      navigate(`details-event/${id}`);
+    },
+    [navigate],
+  );
 
   if (events.length === 0) {
     return (
@@ -24,10 +31,6 @@ function EventList({
     );
   }
 
-  const handleGoDetails = useCallback((id:string)=>{
-    navigate(`details-event/${id}`)
-  }, [navigate])
-
   return (
     <Row>
       {events.map((event) => (
@@ -36,7 +39,7 @@ function EventList({
             description={event.description}
             subtitle={`${formatDate(event.date)} • ${event.category}`}
             title={event.title}
-            imageUrl={event.imageUrl}
+            imageUrl={event.imageUrl || undefined}
             primaryAction={{
               text: "Ver detalhes",
               onClick: () => handleGoDetails(event.id),

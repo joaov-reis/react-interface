@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Category } from "../types/event";
+import type { Category } from "../types";
 
 export function useCategories() {
   const [categories, setCategories] = useState<Category[]>([]);

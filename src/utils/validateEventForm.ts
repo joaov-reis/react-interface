@@ -1,12 +1,12 @@
-import type { Event } from "../types/event";
+import type { EventFormData, FormErros } from "../types";
 
-export const validateEventForm = (formData: Omit<Event, "id">) => {
-  const errors: Record<string, string> = {};
+export const validateEventForm = (formData: EventFormData) => {
+  const errors: FormErros = {};
 
   if (!formData.title) errors.title = "Título obrigatório";
   if (!formData.description) errors.description = "Descrição obrigatória";
   if (!formData.date) errors.date = "Data obrigatória";
-  if (!formData.category) errors.category = "Categoria obrigatória";
+  if (!formData.categoryId) errors.categoryId = "Categoria obrigatória";
 
   return {
     errors,

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import type { Category } from "../../../types/event";
+import type { Category, EventFormData, FormErros} from "../../../types";
 import type { ChangeEvent, FormEvent } from "react";
 import {
   Button,
@@ -10,20 +10,14 @@ import {
   Label,
 } from "reactstrap";
 
-interface Form {
-  title: string;
-  description: string;
-  date: string;
-  imageUrl: string;
-  category: string;
-}
-
 interface EventFormProps {
-  formData: Form;
+  formData: EventFormData;
   categories: Category[];
-  errors: Record<string, string>;
+  errors: FormErros;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
   onSubmit: (e: FormEvent) => void;
+  resetForm?: () => void;
+  isLoadingCategories?: boolean;
 }
 
 function EventForm({
@@ -32,13 +26,16 @@ function EventForm({
   errors,
   onChange,
   onSubmit,
+  isLoadingCategories,
+  resetForm
 }: EventFormProps) {
   return (
     <FormContainer>
       <h3>Criar evento</h3>
       <Form onSubmit={onSubmit} className="mt-4">
-        
-        <FormGroup> <Label htmlFor="title">Titulo</Label>
+        <FormGroup>
+          {" "}
+          <Label htmlFor="title">Titulo</Label>
           <Input
             name="title"
             value={formData.title}
@@ -48,27 +45,34 @@ function EventForm({
           <FormFeedback>{errors.title}</FormFeedback>
         </FormGroup>
 
-        <FormGroup> <Label htmlFor="category">Categoria</Label>
+        <FormGroup>
+          {" "}
+          <Label htmlFor="categoryId">Categoria</Label>
           <Input
             type="select"
-            name="category"
-            value={formData.category}
+            name="categoryId"
+            value={formData.categoryId}
             onChange={onChange}
-            invalid={!!errors.category}
+            invalid={!!errors.categoryId}
           >
-            <option value="">Selecionar categoria</option>
-            {categories.map((categoria) => (
-              <option key={categoria.id} value={categoria.id}>
-                {categoria.name}
-              </option>
-            ))}
+            <option value="">
+              {isLoadingCategories ? "Carregando..." : "Selecionar categoria"}
+            </option>
+            {!isLoadingCategories &&
+              categories.map((categoria) => (
+                <option key={categoria.id} value={categoria.id}>
+                  {categoria.name}
+                </option>
+              ))}
           </Input>
-          <FormFeedback>{errors.category}</FormFeedback>
+          <FormFeedback>{errors.categoryId}</FormFeedback>
         </FormGroup>
 
-        <FormGroup> <Label htmlFor="date">Data</Label>
+        <FormGroup>
+          {" "}
+          <Label htmlFor="date">Data</Label>
           <Input
-            type="date-local"
+            type="datetime-local"
             name="date"
             value={formData.date}
             onChange={onChange}
@@ -77,7 +81,9 @@ function EventForm({
           <FormFeedback>{errors.date}</FormFeedback>
         </FormGroup>
 
-        <FormGroup> <Label htmlFor="imageUrl">Imagem URL</Label>
+        <FormGroup>
+          {" "}
+          <Label htmlFor="imageUrl">Imagem URL</Label>
           <Input
             name="imageUrl"
             value={formData.imageUrl}
@@ -86,7 +92,9 @@ function EventForm({
           />
         </FormGroup>
 
-        <FormGroup> <Label htmlFor="description">Descrição</Label>
+        <FormGroup>
+          {" "}
+          <Label htmlFor="description">Descrição</Label>
           <Input
             type="textarea"
             name="description"
@@ -97,14 +105,14 @@ function EventForm({
           />
           <FormFeedback>{errors.description}</FormFeedback>
         </FormGroup>
-
-        <Button type="submit" color="primary" block>
-          Salvar Evento
-        </Button>
-
-        {/* <Button type="reset" color="secondary" block>
-          Limpar
-        </Button> */}
+        <div className="d-flex justify-content-between">
+          {resetForm && (
+            <Button color="secondary" onClick={resetForm}>
+              Limpar
+            </Button>
+          )}
+          <Button color="primary">Salvar Evento</Button>
+        </div>
       </Form>
     </FormContainer>
   );
@@ -116,7 +124,7 @@ const FormContainer = styled.div`
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  /* background-color: ${({ theme }) => theme.cardBg};
-  border: 1px solid ${({ theme }) => theme.border}; */
+  background-color: ${({ theme }) => theme.cardBg};
+  border: 1px solid ${({ theme }) => theme.border};
   border-radius: 8px;
 `;

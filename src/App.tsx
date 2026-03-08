@@ -1,8 +1,11 @@
+import { ThemeProvider } from './context/ThemeConxtext';
 import { Routers } from './routers'
 
 function App() {
   return(
-    <Routers/>
+    <ThemeProvider>
+      <Routers/>
+    </ThemeProvider>
   )
 }
 

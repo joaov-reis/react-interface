@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/preserve-manual-memoization */
 import { useCallback, useEffect, useState } from "react";
-import type { Event } from "../types/event";
+import type { EventFormData, EventWithId } from "../types";
+import { useCategories } from "./useCategories";
 
 const STORAGE_KEY = "@app/events";
 
 export function useEvents() {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<EventWithId[]>([]);
+  const {categories, isLoading} = useCategories();
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -17,13 +20,21 @@ export function useEvents() {
     }
   }, []);
 
-  const saveEvent = useCallback(
-    (newEvent: Event) => {
+  const saveEvent = useCallback((form: EventFormData) => {
+      const { categoryId, ...rest } = form;
+
+      const categoryData = categories.find((c) => c.id === categoryId);
+
+      const newEvent: EventWithId = {
+        id: String(new Date().getTime()),
+        category: categoryData!,
+        ...rest,
+      };
       const updatedEvents = [...events, newEvent];
       setEvents(updatedEvents);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedEvents));
     },
-    [events],
+    [events, categories],
   );
 
   const getEventById = useCallback(
@@ -35,6 +46,8 @@ export function useEvents() {
 
   return {
     events,
+    categories,
+    isLoadingCategories: isLoading,
     getEventById,
     saveEvent,
   };
