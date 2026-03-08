@@ -1,10 +1,10 @@
 import type { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
-  body: "#f8f9fa",
+  body: "#e9e9e9",
   text: "#212529",
   cardBg: "#ffffff",
-  primary: "#0d6efd",
+  primary: "#105aca",
   border: "#dee2e6",
 };
 

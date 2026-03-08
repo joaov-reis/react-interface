@@ -1,6 +1,6 @@
 import { Button, Container } from "reactstrap";
 import { StyledBrand, StyledNavbar } from "./styles";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo-company.jpg";
 import { Link, useLocation } from "react-router";
 import { BsMoonStars, BsSun } from "react-icons/bs";
 import { useTheme } from "../../context/ThemeConxtext";
@@ -13,21 +13,28 @@ function Header() {
       <Container className="d-flex justify-content-between">
         <StyledBrand tag={Link} to="/">
           <img
-            alt="Logo Infnet"
+            alt="Logo empresa"
             src={logo}
             style={{
-              height: 40,
-              width: 40,
+              height: 80,
+              width: 150,
+              borderRadius: 25,
             }}
           />
-          <span>Infnet Eventos</span>
         </StyledBrand>
-        <div className="d-flex gap-2 align-items-center">
+        <div className="flex-fill d-flex flex-column align-items-center">
+          <span className="fw-bold m-2 fs-5">
+            Controle de reserva das salas de reunião
+          </span>
+
           {location.pathname !== "/create-event" && (
-            <Button tag={Link} to="/create-event" color="primary">
-              Criar evento
+            <Button tag={Link} to="/create-event" style={{ backgroundColor: "#3d51ac", borderColor: "#3d51ac" }}>
+              Faça sua reserva
             </Button>
           )}
+        </div>
+
+        <div>
           <Button
             outline
             size="sm"

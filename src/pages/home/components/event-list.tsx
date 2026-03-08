@@ -25,8 +25,8 @@ function EventList({
     return (
       <p className="text-muted">
         {searchTerm
-          ? `Nehum resultado encontrado para "${searchTerm}"`
-          : "Nehum evento registrado ainda."}
+          ? `Nehuma reunião encontrada para "${searchTerm}"`
+          : "Nehuma reunião registrada ainda."}
       </p>
     );
   }
@@ -45,7 +45,7 @@ function EventList({
               onClick: () => handleGoDetails(event.id),
             }}
             secondaryAction={{
-              text: "Inscreva-se",
+              text: "Confirme sua presença",
               onClick: () => {},
             }}
           />

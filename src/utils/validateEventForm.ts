@@ -6,7 +6,7 @@ export const validateEventForm = (formData: EventFormData) => {
   if (!formData.title) errors.title = "Título obrigatório";
   if (!formData.description) errors.description = "Descrição obrigatória";
   if (!formData.date) errors.date = "Data obrigatória";
-  if (!formData.categoryId) errors.categoryId = "Categoria obrigatória";
+  if (!formData.categoryId) errors.categoryId = "Local obrigatório";
 
   return {
     errors,

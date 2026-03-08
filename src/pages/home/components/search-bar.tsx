@@ -10,7 +10,7 @@ function SearchBar({ onChange, value }: SearchBarProps) {
     <ContainerSearch>
       <InputSearch
         type="text"
-        placeholder="Buscar eventos por título ou descrição..."
+        placeholder="Buscar reuniões por título ou descrição..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />

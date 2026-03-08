@@ -7,7 +7,7 @@ function Title({ searchValue }: TitleProps) {
     <h2>
       {searchValue.length > 0
         ? `Busca realizada: ${searchValue}`
-        : "Todos os eventos"}
+        : "Todas reuniões"}
     </h2>
   );
 }

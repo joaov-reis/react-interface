@@ -31,11 +31,11 @@ function EventForm({
 }: EventFormProps) {
   return (
     <FormContainer>
-      <h3>Criar evento</h3>
+      <h3>Faça sua reserva</h3>
       <Form onSubmit={onSubmit} className="mt-4">
         <FormGroup>
           {" "}
-          <Label htmlFor="title">Titulo</Label>
+          <Label htmlFor="title">Titulo da reunião</Label>
           <Input
             name="title"
             value={formData.title}
@@ -47,7 +47,7 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="categoryId">Categoria</Label>
+          <Label htmlFor="categoryId">Local</Label>
           <Input
             type="select"
             name="categoryId"
@@ -83,7 +83,7 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="imageUrl">Imagem URL</Label>
+          <Label htmlFor="imageUrl">URL do Banner do seu evento</Label>
           <Input
             name="imageUrl"
             value={formData.imageUrl}
@@ -111,7 +111,7 @@ function EventForm({
               Limpar
             </Button>
           )}
-          <Button color="primary">Salvar Evento</Button>
+          <Button style={{ backgroundColor: "#3d51ac", borderColor: "#3d51ac" }}>Finalizar reserva</Button>
         </div>
       </Form>
     </FormContainer>
