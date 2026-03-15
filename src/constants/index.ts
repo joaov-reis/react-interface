@@ -1,2 +1,2 @@
-export {default as CardBgDefault} from "../assets/meeting-room.jpg";
+export {default as CardBgDefault} from "../assets/repair.jpg";
 

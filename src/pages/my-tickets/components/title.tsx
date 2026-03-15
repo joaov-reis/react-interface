@@ -4,10 +4,10 @@ interface TitleProps {
 
 function Title({ searchValue }: TitleProps) {
   return (
-    <h2>
+    <h2 style={{ textAlign: "center" }}>
       {searchValue.length > 0
         ? `Busca realizada: ${searchValue}`
-        : "Todas reuniões"}
+        : "Suas solicitações de reparo"}
     </h2>
   );
 }

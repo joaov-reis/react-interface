@@ -16,7 +16,7 @@ function EventList({
 
   const handleGoDetails = useCallback(
     (id: string) => {
-      navigate(`details-event/${id}`);
+      navigate(`my-tickets-details/${id}`);
     },
     [navigate],
   );
@@ -25,8 +25,8 @@ function EventList({
     return (
       <p className="text-muted">
         {searchTerm
-          ? `Nehuma reunião encontrada para "${searchTerm}"`
-          : "Nehuma reunião registrada ainda."}
+          ? `Nehum reparo encontrada para "${searchTerm}"`
+          : "Nehuma solicitação de reparo registrada."}
       </p>
     );
   }
@@ -36,6 +36,7 @@ function EventList({
       {events.map((event) => (
         <Col key={event.id} sm="12" md="6" lg="4" className="mb-4">
           <CardCustom
+            category={event.category}
             description={event.description}
             subtitle={`${formatDate(event.date)} • ${event.category.name}`}
             title={event.title}
@@ -43,10 +44,6 @@ function EventList({
             primaryAction={{
               text: "Ver detalhes",
               onClick: () => handleGoDetails(event.id),
-            }}
-            secondaryAction={{
-              text: "Confirme sua presença",
-              onClick: () => {},
             }}
           />
         </Col>

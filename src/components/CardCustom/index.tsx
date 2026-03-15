@@ -1,6 +1,7 @@
-import { Button, CardBody, CardText, CardTitle } from "reactstrap";
+import { Badge, Button, CardBody, CardText, CardTitle } from "reactstrap";
 import { CardBgDefault } from "../../constants";
 import { CardContainer, ImageContainer } from "./styles";
+import type { Category } from "../../types";
 
 interface ActionProps {
   text: string;
@@ -14,6 +15,7 @@ interface CardCustomProps {
   imageUrl?: string;
   primaryAction?: ActionProps;
   secondaryAction?: ActionProps;
+  category?: Category;
 }
 
 function CardCustom({
@@ -23,9 +25,13 @@ function CardCustom({
   imageUrl = CardBgDefault,
   primaryAction,
   secondaryAction,
+  category,
 }: CardCustomProps) {
   return (
     <CardContainer>
+      <div className="d-flex justify-content-center mt-3">
+        <Badge color="info">Tipo de produto: {category?.name}</Badge>
+      </div>
       <ImageContainer>
         <img src={imageUrl} alt={title} />
       </ImageContainer>

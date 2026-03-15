@@ -15,9 +15,9 @@ function EventInfo({ event, onBack, onSubscribe }: EventInfoProps) {
     <InfoContainer>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>{event.title}</h1>
-        <Badge color="primary">Local: {event.category.name}</Badge>
+        <Badge color="primary">Tipo de produto: {event.category.name}</Badge>
       </div>
-      <HeroImage src={event.imageUrl || CardBgDefault} alt={event.title} />
+      <HeroImage src={event.image || CardBgDefault} alt={event.title} />
 
       <div className="mt-4">
         <h5>Data: {formatDate(event.date)}</h5>
@@ -27,8 +27,8 @@ function EventInfo({ event, onBack, onSubscribe }: EventInfoProps) {
       </div>
 
       <div className="d-flex gap-3 mt-5">
-        <Button color="success" size="lg" onClick={onSubscribe}>
-          Confirme sua presença
+        <Button color="danger" size="lg" onClick={onSubscribe}>
+          Solicitar urgência
         </Button>
         <Button outline color="secondary" size="lg" onClick={onBack}>
           Voltar

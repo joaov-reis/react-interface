@@ -2,11 +2,12 @@ export type Event = {
   title: string;
   description: string;
   date: string;
-  imageUrl: string;
+  image: string;
   category: Category;
 };
 
 export interface EventWithId extends Event {
+  imageUrl: undefined;
   id: string;
 }
 

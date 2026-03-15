@@ -8,7 +8,7 @@ export function formatDate(dateString: string): string {
 
   if (isNaN(date.getTime())) return "";
 
-  const formatedDate = format(date, "dd/MM/yyyy 'às' HH'h'", { locale: ptBR });
+  const formatedDate = format(date, "dd/MM/yyyy", { locale: ptBR });
 
   return formatedDate;
 }

@@ -1,6 +1,10 @@
 [
-  { "id": "1", "name": "Auditório" },
-  { "id": "2", "name": "Sala de reunião 1" },
-  { "id": "3", "name": "Sala de reunião 2" },
-  { "id": "4", "name": "Sala de reunião 3" }
+  { "id": "1", "name": "Geladeira" },
+  { "id": "2", "name": "Micro-ondas" },
+  { "id": "3", "name": "Fogão" },
+  { "id": "4", "name": "Fogão de indução" },
+  { "id": "5", "name": "Secador de cabelo" },
+  { "id": "6", "name": "Aspirador de pó" },
+  { "id": "7", "name": "Televisão" },
+  { "id": "8", "name": "Outros" }
 ]

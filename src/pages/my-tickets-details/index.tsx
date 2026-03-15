@@ -4,7 +4,7 @@ import { useCallback, useMemo } from "react";
 import { Button, Container } from "reactstrap";
 import EventInfo from "./components/EventInfo";
 
-function DetailsEvent() {
+function MyTicketsDetails() {
   const { id } = useParams<{ id: string }>();
   const { getEventById } = useEvents();
   const navigate = useNavigate();
@@ -19,14 +19,15 @@ function DetailsEvent() {
 
   const handleSubscribe = useCallback(() => {
   if (event) {
-    console.log("Inscrição no evento:", event.id);
+    console.log(`Status do reparo: ${event.id} alterado para urgente!`);
+    alert("Sua solicitação foi sinalizada como urgente! Em breve lhe enviaremos uma resposta.");
   }
 }, [event]);
 
 if (!event) {
   return (
     <Container className="py-5 text-center">
-      <h3>Evento não encontrado</h3>
+      <h3>Reparo não encontrado</h3>
       <Button color="link" className="mt-3" onClick={handleBack}>
         Voltar para a página inicial
       </Button>
@@ -42,4 +43,4 @@ if (!event) {
   </Container>;
 }
 
-export default DetailsEvent;
+export default MyTicketsDetails;

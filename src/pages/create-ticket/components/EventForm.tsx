@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import type { Category, EventFormData, FormErros} from "../../../types";
+import type { Category, EventFormData, FormErros } from "../../../types";
 import type { ChangeEvent, FormEvent } from "react";
 import {
   Button,
@@ -27,15 +27,16 @@ function EventForm({
   onChange,
   onSubmit,
   isLoadingCategories,
-  resetForm
+  resetForm,
 }: EventFormProps) {
+
   return (
     <FormContainer>
-      <h3>Faça sua reserva</h3>
+      <h3>Abertura de ordem de serviço</h3>
       <Form onSubmit={onSubmit} className="mt-4">
         <FormGroup>
           {" "}
-          <Label htmlFor="title">Titulo da reunião</Label>
+          <Label htmlFor="title">Marca/Modelo do produto com defeito</Label>
           <Input
             name="title"
             value={formData.title}
@@ -47,7 +48,7 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="categoryId">Local</Label>
+          <Label htmlFor="categoryId">Tipo de produto</Label>
           <Input
             type="select"
             name="categoryId"
@@ -56,7 +57,7 @@ function EventForm({
             invalid={!!errors.categoryId}
           >
             <option value="">
-              {isLoadingCategories ? "Carregando..." : "Selecionar categoria"}
+              {isLoadingCategories ? "Carregando..." : "Selecionar"}
             </option>
             {!isLoadingCategories &&
               categories.map((categoria) => (
@@ -70,9 +71,9 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="date">Data</Label>
+          <Label htmlFor="date">Data em que apresentou defeito</Label>
           <Input
-            type="datetime-local"
+            type="date"
             name="date"
             value={formData.date}
             onChange={onChange}
@@ -83,22 +84,11 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="imageUrl">URL do Banner do seu evento</Label>
-          <Input
-            name="imageUrl"
-            value={formData.imageUrl}
-            onChange={onChange}
-            placeholder="https://..."
-          />
-        </FormGroup>
-
-        <FormGroup>
-          {" "}
-          <Label htmlFor="description">Descrição</Label>
+          <Label htmlFor="description">Descrição do defeito e observações</Label>
           <Input
             type="textarea"
             name="description"
-            rows="4"
+            rows="5"
             value={formData.description}
             onChange={onChange}
             invalid={!!errors.description}
@@ -111,7 +101,11 @@ function EventForm({
               Limpar
             </Button>
           )}
-          <Button style={{ backgroundColor: "#3d51ac", borderColor: "#3d51ac" }}>Finalizar reserva</Button>
+          <Button
+            style={{ backgroundColor: "#3d51ac", borderColor: "#3d51ac" }}
+          >
+            Enviar solicitação de reparo
+          </Button>
         </div>
       </Form>
     </FormContainer>

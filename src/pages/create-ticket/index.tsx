@@ -15,7 +15,7 @@ const INITIAL_FORM = {
   categoryId: "",
 };
 
-function CreateEvent() {
+function CreateTicket() {
   const navigate = useNavigate();
   const { categories, isLoadingCategories, saveEvent } = useEvents();
   const [formData, setFormData] = useState<EventFormData>(INITIAL_FORM);
@@ -64,4 +64,4 @@ function CreateEvent() {
   );
 }
 
-export default CreateEvent;
+export default CreateTicket;

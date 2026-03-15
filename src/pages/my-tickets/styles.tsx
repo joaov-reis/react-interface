@@ -1,4 +1,4 @@
-import { Button, Input } from "reactstrap";
+import { Input } from "reactstrap";
 import styled from "styled-components";
 
 export const ContainerSearch = styled.div`
@@ -26,23 +26,5 @@ export const InputSearch = styled(Input)`
     background-color: ${({ theme }) => theme.cardBg};
     color: ${({ theme }) => theme.text};
     border-color: ${({ theme }) => theme.primary};
-  }
-`;
-
-export const StyledButton = styled(Button)`
-  width: 300px;
-  height: 70px;
-  font-size: 18px;
-  border-radius: 8px;
-  background-color: #3d51ac;
-  border-color: #3d51ac;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background-color: #32449a;
-    border-color: #32449a;
   }
 `;
