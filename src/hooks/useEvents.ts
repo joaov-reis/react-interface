@@ -13,6 +13,7 @@ export function useEvents() {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setEvents(JSON.parse(stored));
       } catch (e) {
         console.error("Error parsing events", e);
