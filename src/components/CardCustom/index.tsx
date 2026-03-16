@@ -30,7 +30,7 @@ function CardCustom({
   return (
     <CardContainer>
       <div className="d-flex justify-content-center mt-3">
-        <Badge color="info">Tipo de produto: {category?.name}</Badge>
+        <Badge color="warning text-dark mb-2">Tipo de produto: {category?.name}</Badge>
       </div>
       <ImageContainer>
         <img src={imageUrl} alt={title} />
@@ -47,21 +47,11 @@ function CardCustom({
           <div className="d-flex justify-content-between mt-3">
             {primaryAction && (
               <Button
-                outline
-                color="info"
+                color="warning"
                 size="sm"
                 onClick={primaryAction.onClick}
               >
                 {primaryAction.text}
-              </Button>
-            )}
-            {secondaryAction && (
-              <Button
-                color="success"
-                size="sm"
-                onClick={secondaryAction.onClick}
-              >
-                {secondaryAction.text}
               </Button>
             )}
           </div>

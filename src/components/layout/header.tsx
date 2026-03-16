@@ -16,7 +16,7 @@ function Header() {
           <img
             alt="Logo empresa"
             src={logo}
-            style={{ height: 100, width: 180, borderRadius: 25 }}
+            style={{ height: 125, width: 140, borderRadius: 25 }}
           />{" "}
         </StyledBrand>{" "}
         <div className="flex-fill d-flex flex-column align-items-center">

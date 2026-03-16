@@ -1,25 +1,20 @@
-import { Link, useLocation } from "react-router";
+import { useNavigate } from "react-router";
+import { useCallback } from "react";
 import { Container } from "reactstrap";
-import { StyledButton } from "./styles";
+import ContactCard from "./components/EventInfo";
 
-function ContactUs() {
-  const location = useLocation();
+function MyTicketsDetails() {
+  const navigate = useNavigate();
+
+  const handleBack = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
 
   return (
     <Container>
-      <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "20px",
-        }}>
-
-        {location.pathname !== "/create-ticket" && (<StyledButton tag={Link} to="/create-ticket">Abrir ordem de serviço </StyledButton>)}
-
-      </div>
+      <ContactCard onBack={handleBack} />
     </Container>
   );
 }
 
-export default ContactUs;
+export default MyTicketsDetails;

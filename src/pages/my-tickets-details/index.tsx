@@ -27,9 +27,9 @@ function MyTicketsDetails() {
 if (!event) {
   return (
     <Container className="py-5 text-center">
-      <h3>Reparo não encontrado</h3>
+      <h3>Solicitação de reparo não encontrado</h3>
       <Button color="link" className="mt-3" onClick={handleBack}>
-        Voltar para a página inicial
+        Voltar para a página anterior
       </Button>
     </Container>
   );

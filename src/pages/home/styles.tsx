@@ -34,15 +34,15 @@ export const StyledButton = styled(Button)`
   height: 70px;
   font-size: 18px;
   border-radius: 8px;
-  background-color: #3d51ac;
-  border-color: #3d51ac;
+  background-color: #adab1b;
+  border-color: #adab1b;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    background-color: #32449a;
-    border-color: #32449a;
+    background-color: #8d8b1b;
+    border-color: #8d8b1b;
   }
 `;

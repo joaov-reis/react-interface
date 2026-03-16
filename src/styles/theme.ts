@@ -1,7 +1,7 @@
 import type { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
-  body: "#e9e9e9",
+  body: "#dad9cb",
   text: "#212529",
   cardBg: "#ffffff",
   primary: "#105aca",
@@ -9,7 +9,7 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-  body: "#121212",
+  body: "#3a3932",
   text: "#e0e0e0",
   cardBg: "#1e1e1e",
   primary: "#375a7f",

@@ -29,7 +29,6 @@ function EventForm({
   isLoadingCategories,
   resetForm,
 }: EventFormProps) {
-
   return (
     <FormContainer>
       <h3>Abertura de ordem de serviço</h3>
@@ -84,7 +83,9 @@ function EventForm({
 
         <FormGroup>
           {" "}
-          <Label htmlFor="description">Descrição do defeito e observações</Label>
+          <Label htmlFor="description">
+            Descrição do defeito e observações
+          </Label>
           <Input
             type="textarea"
             name="description"
@@ -101,11 +102,7 @@ function EventForm({
               Limpar
             </Button>
           )}
-          <Button
-            style={{ backgroundColor: "#3d51ac", borderColor: "#3d51ac" }}
-          >
-            Enviar solicitação de reparo
-          </Button>
+          <Button color="warning">Enviar solicitação de reparo</Button>
         </div>
       </Form>
     </FormContainer>
