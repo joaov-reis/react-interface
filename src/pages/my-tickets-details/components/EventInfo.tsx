@@ -18,7 +18,7 @@ function EventInfo({ event, onBack, onSubscribe }: EventInfoProps) {
           {event.category.name} - {event.title}{" "}
         </h2>
       </div>
-      <HeroImage src={event.image || CardBgDefault} alt={event.title} />
+      <HeroImage src={event.imageUrl || CardBgDefault} alt={event.title} />
 
       <div className="mt-4">
         <h5>Data: {formatDate(event.date)}</h5>
