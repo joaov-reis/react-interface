@@ -1,4 +1,4 @@
-import { Badge, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import { CardBgDefault } from "../../../constants";
 import type { EventWithId } from "../../../types";
 import { HeroImage, InfoContainer } from "./styles";
@@ -14,8 +14,9 @@ function EventInfo({ event, onBack, onSubscribe }: EventInfoProps) {
   return (
     <InfoContainer>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>{event.title}</h1>
-        <Badge color="primary">Tipo de produto: {event.category.name}</Badge>
+        <h2>
+          {event.category.name} - {event.title}{" "}
+        </h2>
       </div>
       <HeroImage src={event.image || CardBgDefault} alt={event.title} />
 

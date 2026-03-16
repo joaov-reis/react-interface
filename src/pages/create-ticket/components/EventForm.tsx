@@ -96,6 +96,7 @@ function EventForm({
           />
           <FormFeedback>{errors.description}</FormFeedback>
         </FormGroup>
+
         <div className="d-flex justify-content-between">
           {resetForm && (
             <Button color="secondary" onClick={resetForm}>
